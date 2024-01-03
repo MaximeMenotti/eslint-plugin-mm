@@ -1,15 +1,14 @@
-// enforce-otter-cute.test.js
-const { RuleTester } = require("eslint");
-const noNestedIfRule = require("./no-nested-if");
+import { RuleTester } from 'eslint';
+import rule, { RULE_NAME } from './no-nested-if';
 
 const ruleTester = new RuleTester({
   parserOptions: { ecmaVersion: 2015 },
 });
 
-ruleTester.run("no-nested-if", noNestedIfRule, {
+ruleTester.run(RULE_NAME, rule, {
   valid: [
     {
-      code: "if(true) {}",
+      code: 'if(true) {}',
     },
     {
       code: `
@@ -34,7 +33,17 @@ ruleTester.run("no-nested-if", noNestedIfRule, {
       `,
       errors: 1,
     },
+    {
+      code: `
+        if (true) {
+          const otter = "cute";
+        } else {
+          if (false) {
+            const otter = "cute";
+          }
+        }
+      `,
+      errors: 1,
+    },
   ],
 });
-
-console.log("All tests passed!");

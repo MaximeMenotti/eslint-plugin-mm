@@ -1,15 +1,81 @@
 {
   "name": "eslint-plugin-mm",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "node rules/no-nested-if.test.js"
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@8.12.1",
+  "description": "Maxime extended ESLint rules",
+  "author": "Maxime Menotti <maxime.menotti@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/maximemenotti/eslint-plugin-mm#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximemenotti/eslint-plugin-mm.git"
   },
+  "bugs": "https://github.com/maximemenotti/eslint-plugin-mm/issues",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "pnpm run dev && eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "peerDependencies": {
+    "eslint": "*"
+  },
   "devDependencies": {
-    "eslint": "^8.56.0"
+    "@antfu/eslint-config": "^2.4.6",
+    "@antfu/ni": "^0.21.12",
+    "@antfu/utils": "^0.7.7",
+    "@types/eslint": "^8.56.0",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^20.10.5",
+    "@types/semver": "^7.5.6",
+    "@typescript-eslint/rule-tester": "^6.15.0",
+    "@typescript-eslint/typescript-estree": "^6.15.0",
+    "@typescript-eslint/utils": "^6.15.0",
+    "ajv": "^6.10.0",
+    "bumpp": "^9.2.1",
+    "eslint": "^8.56.0",
+    "eslint-define-config": "^2.0.0",
+    "esno": "^4.0.0",
+    "lint-staged": "^15.2.0",
+    "lodash.merge": "4.6.2",
+    "pnpm": "^8.12.1",
+    "rimraf": "^5.0.5",
+    "semver": "^7.5.4",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.0"
+  },
+  "resolutions": {
+    "eslint-plugin-mm": "workspace:*"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
