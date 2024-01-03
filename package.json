@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-mm",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "packageManager": "pnpm@8.12.1",
   "description": "Maxime extended ESLint rules",
   "author": "Maxime Menotti <maxime.menotti@gmail.com>",
