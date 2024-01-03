@@ -12,7 +12,11 @@
     "url": "git+https://github.com/maximemenotti/eslint-plugin-mm.git"
   },
   "bugs": "https://github.com/maximemenotti/eslint-plugin-mm/issues",
-  "keywords": [],
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
